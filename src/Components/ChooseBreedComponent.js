@@ -1,42 +1,45 @@
 import React from "react";
 import  axios from "axios";
+import {Component} from "react"
 
 let loadList;
 
-export default function ChooseBreed() {
+export default class ChooseBreedComponent extends Component{
 
-	// List all breeds Список всех пород
-	let url="https://dog.ceo/api/breeds/list/all"
-
-	axios.get(url)
-		.then(function (response) {
-			loadList=response;
-			console.log(response);
-			for(let i in loadList.data.message) {
-
-				console.log(i)
-			//	loadList.data.message.map(function (elem, index) {
-		//		 (console.log (elem))
-	//		})
+	constructor(props) {
+			super(props);
+			this.state = { list: null};
 		}
-		}
-	)
 
-		.catch(function (error) {
-			console.log(error);
-		});
+		componentWillMount() {
+			let self=this;
+				// List all breeds Список всех пород
+			fetch("https://dog.ceo/api/breeds/list/all")
+				.then(function(response) {
+						if (response.status !== 200) {
+							console.log('Looks like there was a problem. Status Code: ' +
+								response.status);
+							return;
+						}
+						// Examine the text in the response
+						response.json().then(function(data) {
+				////			for(let i in data.message) {
+				//				console.log(i)}
+				Object.entries(data.message)
+								self.setState({ list: 	Object.entries(data.message) });
+							console.log(data.message);
+						});
+					}
+				)
+				.catch(function(err) {	console.log('Fetch Error :-S', err)	});
+		};
 
-
-
+render() {
 	return (
-		<div>
-	{loadList ? "загрузка данных" : "ok"
-
-	}
-
-		</div>
-
-	)
+		<ul> загрузка данных
+		{this.state.list}
+	</ul> )
+}
 }
 
 
