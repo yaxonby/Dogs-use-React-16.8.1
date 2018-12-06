@@ -1,32 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Component} from "react"
-//import '../semantic/dist/semantic.min.css';
 import './styles/index.css';
-import { Router, Route} from 'react-router'
-//import { Router, Route, IndexRoute, browserHistory, Switch } from 'react-router'
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import rootReducer from "./reducers/index";
 import { BrowserRouter } from 'react-router-dom';
 import App from "./App.js";
-import CardDog from "./Components/CardDogComponent";
+import Loadable from 'react-loadable';
 
+
+
+const store =createStore(rootReducer);
 
 ReactDOM.render((
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>
 ), document.getElementById('root'))
 
 
+//import lodash from 'lodash';
 
-/*
-ReactDOM.render(
-	<Router history={browserHistory}>
-	    <Route path='/' component={App}>
-	      <IndexRoute component={CardDog} />
-	      <Route path='admin' component={Admin} />
-	      <Route path='carddog' component={CardDog} />
-	    </Route>
-	  </Router>,
-, document.getElementById('root')
-);
-*/
+
+
+
+function getComponent() {
+
+return import('lodash').then(({ default: _ }) => {
+var element = document.createElement('div');
+element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+     return element;
+   }).catch(error => 'An error occurred while loading the component');
+  }
+
+ getComponent().then(component => {
+   document.body.appendChild(component);
+  })

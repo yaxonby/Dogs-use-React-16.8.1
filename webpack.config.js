@@ -1,6 +1,13 @@
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 module.exports = {
+	entry: { main: './src/index.js' },
+   output: {
+     path: path.resolve(__dirname, 'dist'),
+		 chunkFilename: '[name].bundle.js',
+     filename: 'main.js' 
+   },
   module: {
     rules: [
       {
