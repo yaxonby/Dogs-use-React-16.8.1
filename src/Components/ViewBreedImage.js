@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";
+import MyImage from "./function/MyImage"
 
 export default class ViewBreedImage extends Component{
 	constructor(props) {
@@ -22,7 +23,9 @@ export default class ViewBreedImage extends Component{
 						 <div>
 							 {dogBreed.map(function(elem, index) {return(
 								 <li key={index}>
-				      			<img src={elem}/>
+
+                    <MyImage src={elem}/>
+
 								  </li>
 							 )}
 						 )}
@@ -31,3 +34,5 @@ export default class ViewBreedImage extends Component{
 			 );
 			  };
 }}
+
+//<img src={elem}/>

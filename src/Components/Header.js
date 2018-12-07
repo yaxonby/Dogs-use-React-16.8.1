@@ -8,7 +8,7 @@ const Header = () => (
   <h1> Dog pictures </h1>
     <nav>
 
-	  	<Link to='/'> <Fab color="primary" variant='extended'> <span>Home </span></Fab> </Link>
+	  	<Link to='/'> <Fab color="default" variant='extended'> <span>Home </span></Fab> </Link>
 	  	<Link to='/all-breeds'> <Fab color="default" variant='extended'><span>List all breeds</span></Fab> </Link>
 			<Link to='/random-image'> <Fab color="default" variant='extended'><span>Random image</span></Fab> </Link>
 			<Link to='/breed-random-image'> <Fab  color="default" variant='extended'><span> Browse breed list</span></Fab></Link>

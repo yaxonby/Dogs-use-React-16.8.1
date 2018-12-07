@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";
+import Fab from '@material-ui/core/Fab';
 
 export default class ViewBreedRandomImage extends Component{
 
@@ -39,7 +40,7 @@ render () {
 	console.log(this.state.randomFoto);
 	return (
 		<div>  <p> View breed random image </p>
-			<button onClick={this.loadData}> Next</button>
+			<Fab color="default" variant='round' onClick={this.loadData}> Next</Fab>
 			<div>
 				<img src={this.state.randomFoto}/>
 			</div>
