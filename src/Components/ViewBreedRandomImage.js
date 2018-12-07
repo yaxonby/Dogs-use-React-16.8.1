@@ -3,16 +3,15 @@ import {Component} from "react";
 
 export default class ViewBreedRandomImage extends Component{
 
-				constructor(props) {
-				    super(props);
-				    this.state = { AnotherComponent: null,
-						               randomFoto: null};
-			this.loadData=this.loadData.bind(this)
-				  }
+constructor(props) {
+super(props);
+this.state = {randomFoto: null};
+this.loadData=this.loadData.bind(this)
+}
 
-					loadData() {
-							let self=this;
-						const { dispatch} = this.props
+loadData() {
+	let self=this;
+	const { dispatch} = this.props
 						fetch("https://dog.ceo/api/breed/akita/images/random")
 							.then(function(response) {
 									if (response.status !== 200) {
@@ -32,16 +31,19 @@ export default class ViewBreedRandomImage extends Component{
 				    this.loadData()
 				  }
 
-				render () {
+render () {
+	let	 {randomFoto}=this.state;
 
-		//			if (!this.state.randomFoto) { return <div>Loading...</div>
-		//		  } else {
-						console.log(this.state.randomFoto);
-				 	 return ( <div>  <p> View breed random image </p>
-						 <button onClick={this.loadData}> Next</button>
-						 <div>
-			<img src={this.state.randomFoto}/>
+			//			if (!this.state.randomFoto) { return <div>Loading...</div>
+			//		  } else {
+	console.log(this.state.randomFoto);
+	return (
+		<div>  <p> View breed random image </p>
+			<button onClick={this.loadData}> Next</button>
+			<div>
+				<img src={this.state.randomFoto}/>
 			</div>
-						 </div>);
-	//			  };
-			}}
+		</div>);
+		//			  };
+	}
+}

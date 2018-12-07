@@ -7,8 +7,8 @@ import ViewBreedRandomImage from "./ViewBreedRandomImage";
 import ViewAllBreedsContainer from "../containers/ViewAllBreedsContainer";
 import Loadable from 'react-loadable';
 import path from 'path';
-import Loading from './Loading';
-import fakeDelay from './fakeDelay';
+import Loading from './function/Loading';
+import fakeDelay from './function/fakeDelay';
 
 let LoadViewAllBreedsContainer = Loadable({
   loader: () => fakeDelay(400).then(() => import("../containers/ViewAllBreedsContainer")),
@@ -35,6 +35,7 @@ const Main = () => (
      <Route path='/all-breeds' component={LoadViewAllBreedsContainer}/>
 		 <Route path='/random-image' component={LoadViewRandomImage}/>   //ViewRandomImage
      <Route path='/breed-random-image' component={LoadViewBreedRandomImage}/>
+		 <Route component={Home} />
  	  </Switch>
   </main>
 )

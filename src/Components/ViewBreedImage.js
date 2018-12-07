@@ -12,30 +12,22 @@ export default class ViewBreedImage extends Component{
 		}
 
 	render () {
-
-const {dogBreed}=this.props
-
+		const {dogBreed}=this.props
 		if (!dogBreed) {
-			return ( <div>
-				<div>...Loading...</div>
-				</div>
-			)
-
-		} else {
-
-			console.log(dogBreed);
-	 	 return (
-			 <div>
-			 <div>
-			 {dogBreed.map(function(elem, index) {return(
-				 <li key={index}>
-      <img src={elem}/>
-				  </li>
-			 )}
-		 )}
-
-			 </div>
-		 </div>
-	 );
-	  };
+		return (<p>...Loading...</p>)
+				} else {
+				console.log(dogBreed);
+			 	 return (
+					 <div>
+						 <div>
+							 {dogBreed.map(function(elem, index) {return(
+								 <li key={index}>
+				      			<img src={elem}/>
+								  </li>
+							 )}
+						 )}
+						 </div>
+				 </div>
+			 );
+			  };
 }}

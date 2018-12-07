@@ -5,8 +5,8 @@ import ViewAllBreeds from  "../Components/ViewListAllBreeds";
 import ViewBreedImage from "../Components/ViewBreedImage";
 import Loadable from 'react-loadable';
 import path from 'path';
-import Loading from '../Components/Loading';
-import fakeDelay from '../Components/fakeDelay';
+import Loading from '../Components/function/Loading';
+import fakeDelay from '../Components/function/fakeDelay';
 
 
 let LoadViewAllBreeds = Loadable({
@@ -86,8 +86,6 @@ ErrorLoggingTool.log(errorInfo);
 
 	componentDidMount() {this.loadData()}
 
-
-
 render() {
   if(this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>)
 
@@ -110,10 +108,20 @@ render() {
 }
 }
 
+const mapStateToProps = state => ({
+	dogBreed: state.loadBreed,
+	listBreed: state.list,
+	ListSubBreed: state.loadListSubBreed
+})
+
+export default connect(mapStateToProps)(ViewAllBreedsContainer)
+
+
+/*
 export default connect(
 	state => ({
 		dogBreed: state.loadBreed,
 		listBreed: state.list,
 		ListSubBreed: state.loadListSubBreed
-	})
-)(ViewAllBreedsContainer)
+	}))(ViewAllBreedsContainer)
+*/
