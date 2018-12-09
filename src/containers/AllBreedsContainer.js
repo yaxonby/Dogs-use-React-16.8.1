@@ -1,8 +1,6 @@
 import React from "react"
 import {Component} from "react"
 import {connect} from "react-redux"
-import ViewAllBreeds from  "../Components/ViewListAllBreeds"
-import ViewBreedImage from "../Components/ViewBreedImage"
 import Loadable from 'react-loadable'
 import path from 'path'
 import Loading from '../Components/function/Loading'
@@ -10,23 +8,23 @@ import fakeDelay from '../Components/function/fakeDelay'
 import loadData from '../Components/function/loadData'
 import loadSeeBreed from '../Components/function/loadSeeBreed'
 
+let LoadAllBreeds = Loadable({
+  loader: () => fakeDelay(400).then(() => import("../Components/ListAllBreeds")),
+  loading: Loading,
+	serverSideRequirePath: path.resolve(__dirname, "../Components/ListAllBreeds")
+});
+
+
+let LoadBreedImage = Loadable({
+  loader: () => fakeDelay(400).then(() => import("../Components/BreedImage")),
+  loading: Loading,
+	serverSideRequirePath: path.resolve(__dirname, "../Components/BreedImage")
+});
+
 const url='https://dog.ceo/api/breeds/list/all'
 const urlRandom="/images"
 
-let LoadViewAllBreeds = Loadable({
-  loader: () => fakeDelay(400).then(() => import("../Components/ViewListAllBreeds")),
-  loading: Loading,
-	serverSideRequirePath: path.resolve(__dirname, "../Components/ViewListAllBreeds")
-});
-
-
-let LoadViewBreedImage = Loadable({
-  loader: () => fakeDelay(400).then(() => import("../Components/ViewBreedImage")),
-  loading: Loading,
-	serverSideRequirePath: path.resolve(__dirname, "../Components/ViewBreedImage")
-});
-
-class ViewAllBreedsContainer extends Component {
+class AllBreedsContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state={error: null}
@@ -50,7 +48,7 @@ this.setState({error: errorString});
 ErrorLoggingTool.log(errorInfo);
 }
 
-	componentDidMount() {loadData(this.props, url)}
+componentDidMount() {loadData(this.props, url)}
 
 render() {
   if(this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>)
@@ -60,17 +58,16 @@ render() {
 		if (!listBreed) {
 			return (<p>Loading...</p>)
 		} else {
-			console.log(  "ListSubBreed",  ListSubBreed)
 			const listDogs = listBreed.map((elem, index) => (
-			<LoadViewAllBreeds post={elem} key={index} SeeBreed={this.SeeBreed} ListSubBreed={ListSubBreed} />
+			<LoadAllBreeds post={elem} key={index} SeeBreed={this.SeeBreed} ListSubBreed={ListSubBreed} />
 			))
 			return (
 				<div>
 					<h3 className="positionCenter"> Choose a breed or sub breed of dog to view photos. </h3>
-				<div className="containerAllBreeds">
-					<div className="listBreeds"> <ul>{listDogs} </ul> </div>
-					<div className="imageBreeds"> <LoadViewBreedImage  ListImageBreed={ListImageBreed}  breedName={breedName}/> </div>
-				</div>
+					<div className="containerAllBreeds">
+						<div className="listBreeds"> <ul>{listDogs} </ul> </div>
+						<div className="imageBreeds"> <LoadBreedImage  ListImageBreed={ListImageBreed}  breedName={breedName}/> </div>
+					</div>
 				</div>
 			)
 		}
@@ -84,4 +81,4 @@ const mapStateToProps = state => ({
 	breedName: state.breedName
 })
 
-export default connect(mapStateToProps)(ViewAllBreedsContainer)
+export default connect(mapStateToProps)(AllBreedsContainer)
