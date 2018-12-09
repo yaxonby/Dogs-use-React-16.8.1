@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, mount } from 'enzyme';
-import ViewAllBreedsContainer from '../src/containers/ViewAllBreedsContainer';
+import AllBreedsContainer from '../src/containers/AllBreedsContainer';
 
 //Enzyme.configure({ adapter: new Adapter() });
 

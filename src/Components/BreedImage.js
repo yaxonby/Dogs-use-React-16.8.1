@@ -15,7 +15,7 @@ export default class BreedImage extends Component{
 	render () {
 		const {ListImageBreed, breedName}=this.props
 		if (!ListImageBreed) {
-		return (<p></p>)
+		return (<p> </p>)
 				} else {
 					return (
 						<div>

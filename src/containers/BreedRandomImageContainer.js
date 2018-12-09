@@ -9,14 +9,14 @@ import loadData from '../Components/function/loadData'
 import loadSeeBreed from '../Components/function/loadSeeBreed'
 
 let LoadListAllBreeds = Loadable({
-  loader: () => fakeDelay(400).then(() => import("../Components/ListAllBreeds")),
-  loading: Loading,
+	loader: () => fakeDelay(400).then(() => import("../Components/ListAllBreeds")),
+	loading: Loading,
 	serverSideRequirePath: path.resolve(__dirname, "../Components/ListAllBreeds")
 });
 
 let LoadBreedRandomImage = Loadable({
-  loader: () => fakeDelay(400).then(() => import("../Components/BreedRandomImage")),
-  loading: Loading,
+	loader: () => fakeDelay(400).then(() => import("../Components/BreedRandomImage")),
+	loading: Loading,
 	serverSideRequirePath: path.resolve(__dirname, "../Components/BreedRandomImage")
 });
 

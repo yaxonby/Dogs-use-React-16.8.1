@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 //import Enzyme from 'enzyme';
 //import Adapter from 'enzyme-adapter-react-16';
 //import { shallow, mount } from 'enzyme';
-import ViewRandomImage from '../src/Components/ViewRandomImage';
+import RandomImage from '../src/Components/RandomImage';
 
 //Enzyme.configure({ adapter: new Adapter() });
 
@@ -12,9 +12,9 @@ import ViewRandomImage from '../src/Components/ViewRandomImage';
 //    expect(ViewRandomImageComponent.props().dogBreed).toBe(undefined);
 //});
 
-it('should render a ViewRandomImage', () => {
+it('should render a RandomImage', () => {
     const wrapper = shallow(
-        <ViewRandomImage />
+        <RandomImage />
     );
     expect(wrapper).toMatchSnapshot();
 });

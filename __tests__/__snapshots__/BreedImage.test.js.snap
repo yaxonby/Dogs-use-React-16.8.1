@@ -3,7 +3,7 @@
 exports[`should render a ViewBreedImage 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ViewBreedImage />,
+  Symbol(enzyme.__unrendered__): <BreedImage />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -17,10 +17,10 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": "...Loading...",
+      "children": " ",
     },
     "ref": null,
-    "rendered": "...Loading...",
+    "rendered": " ",
     "type": "p",
   },
   Symbol(enzyme.__nodes__): Array [
@@ -29,10 +29,10 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": "...Loading...",
+        "children": " ",
       },
       "ref": null,
-      "rendered": "...Loading...",
+      "rendered": " ",
       "type": "p",
     },
   ],

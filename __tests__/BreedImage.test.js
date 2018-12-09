@@ -3,20 +3,20 @@ import renderer from 'react-test-renderer';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, mount } from 'enzyme';
-import ViewBreedImage from '../src/Components/ViewBreedImage';
+import BreedImage from '../src/Components/BreedImage';
 
 //Enzyme.configure({ adapter: new Adapter() });
 
 
 
 it("check prop is null by default", () => {
-    const ViewBreedImageComponent = shallow(<ViewBreedImage />);
-    expect(ViewBreedImageComponent.props().dogBreed).toBe(undefined);
+    const BreedImageComponent = shallow(<BreedImage />);
+    expect(BreedImageComponent.props().dogBreed).toBe(undefined);
 });
 
 it('should render a ViewBreedImage', () => {
     const wrapper = shallow(
-        <ViewBreedImage />
+        <BreedImage />
     );
     expect(wrapper).toMatchSnapshot();
 });
@@ -36,10 +36,10 @@ dogBreed:[]
 const props = { dogBreed:[] }
 
 describe('News container initial', () => { // группируем еще на один уровень, так как здесь потом будет тест componentDidMount
-	 const newsContainer = shallow(<ViewBreedImage  {...props} />)
+	 const newsContainer = shallow(<BreedImage  {...props} />)
 
 	 it('render initial', () => {
-		 expect(newsContainer.find('p')).toHaveLength(0) // .find + поиск по тэгу
+		 expect(newsContainer.find('p')).toHaveLength(1) // .find + поиск по тэгу
 		// expect(newsContainer.find('div')).toHaveLength(0) // .find + поиск по имени компонента
 		// expect(newsContainer.find('p').text()).toEqual('Loading...')
 
