@@ -3,7 +3,7 @@ import {Component} from "react";
 
 const Home = () => (
   <div>
-    <h3>Welcome to Dog pictures Website!</h3>
+    <h3 className="positionCenter" >Welcome to Dog pictures Website!</h3>
   </div>
 );
 

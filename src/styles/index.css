@@ -1,9 +1,35 @@
-
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 	text-decoration: none;
+}
+
+.containerAllBreeds {
+display: flex;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.positionCenter{
+text-align: center;
+}
+
+.liStyle {
+	font-weight: lighter;
+}
+
+.liStyle {
+	font-weight: lighter;
+	list-style:none;
+}
+
+
+.listBreeds:hover {
+cursor:pointer;
+}
+
+.imageBreeds {
 }
 
 img {
@@ -14,5 +40,4 @@ height: 100%;
 max-width: 300px;
 max-height: 270px;
 border: 1px solid black;
-
 }

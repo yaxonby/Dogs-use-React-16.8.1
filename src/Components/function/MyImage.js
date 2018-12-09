@@ -3,9 +3,10 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const MyImage = (src) => (
   <div>
+	{console.log("src=", src.src)}
     <LazyLoadImage
 
-      src={src} // use normal <img> attributes as props
+    src={src.src} // use normal <img> attributes as props
 />
   </div>
 );

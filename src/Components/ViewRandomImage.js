@@ -38,10 +38,10 @@ this.loadData=this.loadData.bind(this)
 	//	if (!this.state.randomFoto) { return <div>Loading...</div>
 //	  } else {
 			console.log(this.state.randomFoto);
-	 	 return ( <div> <p> View random image</p>
-			 <Fab color="default" variant='round' onClick={this.loadData}> Next</Fab>
+	 	 return ( <div className="positionCenter"> <h3> View random image</h3>
 			 <div>
 <img src={this.state.randomFoto}/>
+<Fab color="default" variant='round' onClick={this.loadData}> Next</Fab>
 </div>
 			 </div>);
 //	  };

@@ -5,34 +5,34 @@ import MyImage from "./function/MyImage"
 export default class ViewBreedImage extends Component{
 	constructor(props) {
 	    super(props);
-	  }
+	}
 
-		shouldComponentUpdate(nextProps, nextState, nextContext) {
-			console.log("nextProps=", nextProps,"nextState=", nextState, "nextContext=", nextContext)
-			return true
-		}
+	shouldComponentUpdate(nextProps, nextState, nextContext) {
+		console.log("nextProps=", nextProps,"nextState=", nextState, "nextContext=", nextContext)
+		return true
+	}
 
 	render () {
-		const {dogBreed}=this.props
-		if (!dogBreed) {
-		return (<p>...Loading...</p>)
+		const {ListImageBreed}=this.props
+		if (!ListImageBreed) {
+		return (<p></p>)
 				} else {
-				console.log(dogBreed);
+				console.log(ListImageBreed);
 			 	 return (
 					 <div>
 						 <div>
-							 {dogBreed.map(function(elem, index) {return(
-								 <li key={index}>
-
-                    <MyImage src={elem}/>
-
-								  </li>
+							 {ListImageBreed.map(function(elem, index) {return(
+								<li className="liStyle" key={index}>
+								{console.log(elem)}
+                    				<MyImage src={elem}/>
+								</li>
 							 )}
-						 )}
+						 	)}
 						 </div>
-				 </div>
+				 	</div>
 			 );
-			  };
-}}
+		};
+	}
+}
 
 //<img src={elem}/>

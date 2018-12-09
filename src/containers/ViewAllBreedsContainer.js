@@ -89,7 +89,7 @@ ErrorLoggingTool.log(errorInfo);
 render() {
   if(this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>)
 
-		const  {dogBreed, listBreed, ListSubBreed}=this.props
+		const  {ListImageBreed, listBreed, ListSubBreed}=this.props
 
 		if (!listBreed) {
 			return (<p>Loading...</p>)
@@ -100,8 +100,11 @@ render() {
 			))
 			return (
 				<div>
-					<ul>{listDogs} </ul>
-					<LoadViewBreedImage dogBreed={dogBreed} />
+					<h3 className="positionCenter"> Choose a breed or sub breed of dog to view photos. </h3>
+				<div className="containerAllBreeds">
+					<div className="listBreeds"> <ul>{listDogs} </ul> </div>
+					<div className="imageBreeds"> <LoadViewBreedImage className="imageBreeds" ListImageBreed={ListImageBreed} /> </div>
+				</div>
 				</div>
 			)
 		}
@@ -109,7 +112,7 @@ render() {
 }
 
 const mapStateToProps = state => ({
-	dogBreed: state.loadBreed,
+	ListImageBreed: state.ListLoadImageBreed,
 	listBreed: state.list,
 	ListSubBreed: state.loadListSubBreed
 })

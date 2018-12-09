@@ -12,7 +12,7 @@ export default class ViewListAllBreeds extends Component{
 		console.log(ListSubBreed)
 		return (
 						<ul>
-							<li key={post.id} onClick={SeeBreed.bind(null, post[0])}> {post[0]}
+							<li className="liStyle" key={post.id} onClick={SeeBreed.bind(null, post[0])}> {post[0]}
 								<ul>
 									{post[1].map(function(elem, index) {
 										return (

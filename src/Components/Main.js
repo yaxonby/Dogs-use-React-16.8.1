@@ -3,7 +3,7 @@ import {Component} from "react";
 import { Switch, Route } from 'react-router-dom';
 import Home from "./Home";
 import ViewRandomImage from "./ViewRandomImage";
-import ViewBreedRandomImage from "./ViewBreedRandomImage";
+import ViewBreedRandomImageContainer from "../containers/ViewBreedRandomImageContainer";
 import ViewAllBreedsContainer from "../containers/ViewAllBreedsContainer";
 import Loadable from 'react-loadable';
 import path from 'path';
@@ -22,10 +22,10 @@ let LoadViewRandomImage = Loadable({
 	serverSideRequirePath: path.resolve(__dirname, "./ViewRandomImage")
 });
 
-let LoadViewBreedRandomImage = Loadable({
-  loader: () => fakeDelay(400).then(() => import("./ViewBreedRandomImage")),
+let LoadViewBreedRandomImageContainer = Loadable({
+  loader: () => fakeDelay(400).then(() => import("../containers/ViewBreedRandomImageContainer")),
   loading: Loading,
-	serverSideRequirePath: path.resolve(__dirname, "./ViewBreedRandomImage")
+	serverSideRequirePath: path.resolve(__dirname, "../containers/ViewBreedRandomImageContainer")
 });
 
 const Main = () => (
@@ -34,7 +34,7 @@ const Main = () => (
      <Route exact path='/' component={Home}/>
      <Route path='/all-breeds' component={LoadViewAllBreedsContainer}/>
 		 <Route path='/random-image' component={LoadViewRandomImage}/>   //ViewRandomImage
-     <Route path='/breed-random-image' component={LoadViewBreedRandomImage}/>
+     <Route path='/breed-random-image' component={LoadViewBreedRandomImageContainer}/>
 		 <Route component={Home} />
  	  </Switch>
   </main>
