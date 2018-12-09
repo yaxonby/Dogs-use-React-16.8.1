@@ -13,13 +13,14 @@ export default class ViewBreedImage extends Component{
 	}
 
 	render () {
-		const {ListImageBreed}=this.props
+		const {ListImageBreed, breedName}=this.props
 		if (!ListImageBreed) {
 		return (<p></p>)
 				} else {
 				console.log(ListImageBreed);
 			 	 return (
 					 <div>
+					 <h3> View images breed {breedName}  </h3>
 						 <div>
 							 {ListImageBreed.map(function(elem, index) {return(
 								<li className="liStyle" key={index}>

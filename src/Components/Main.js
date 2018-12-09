@@ -33,7 +33,7 @@ const Main = () => (
 		<Switch>
      <Route exact path='/' component={Home}/>
      <Route path='/all-breeds' component={LoadViewAllBreedsContainer}/>
-		 <Route path='/random-image' component={LoadViewRandomImage}/>   //ViewRandomImage
+		 <Route path='/random-image' component={LoadViewRandomImage}/>
      <Route path='/breed-random-image' component={LoadViewBreedRandomImageContainer}/>
 		 <Route component={Home} />
  	  </Switch>

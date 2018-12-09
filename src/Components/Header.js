@@ -10,8 +10,8 @@ const Header = () => (
 
 	  	<Link to='/'> <Fab color="default" variant='extended'> <span>Home </span></Fab> </Link>
 	  	<Link to='/all-breeds'> <Fab color="default" variant='extended'><span>List all breeds</span></Fab> </Link>
-			<Link to='/random-image'> <Fab color="default" variant='extended'><span>Random image</span></Fab> </Link>
-			<Link to='/breed-random-image'> <Fab  color="default" variant='extended'><span> Browse breed list</span></Fab></Link>
+			<Link to='/random-image'> <Fab color="default" variant='extended'><span>Random image of dog</span></Fab> </Link>
+			<Link to='/breed-random-image'> <Fab  color="default" variant='extended'><span> Random image breed</span></Fab></Link>
 
 
     </nav>

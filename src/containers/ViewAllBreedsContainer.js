@@ -1,13 +1,17 @@
-import React from "react";
-import {Component} from "react";
-import {connect} from "react-redux";
-import ViewAllBreeds from  "../Components/ViewListAllBreeds";
-import ViewBreedImage from "../Components/ViewBreedImage";
-import Loadable from 'react-loadable';
-import path from 'path';
-import Loading from '../Components/function/Loading';
-import fakeDelay from '../Components/function/fakeDelay';
+import React from "react"
+import {Component} from "react"
+import {connect} from "react-redux"
+import ViewAllBreeds from  "../Components/ViewListAllBreeds"
+import ViewBreedImage from "../Components/ViewBreedImage"
+import Loadable from 'react-loadable'
+import path from 'path'
+import Loading from '../Components/function/Loading'
+import fakeDelay from '../Components/function/fakeDelay'
+import loadData from '../Components/function/loadData'
+import loadSeeBreed from '../Components/function/loadSeeBreed'
 
+const url='https://dog.ceo/api/breeds/list/all'
+const urlRandom="/images"
 
 let LoadViewAllBreeds = Loadable({
   loader: () => fakeDelay(400).then(() => import("../Components/ViewListAllBreeds")),
@@ -33,50 +37,12 @@ class ViewAllBreedsContainer extends Component {
 		const { dispatch} = this.props
 		dispatch({  type: "LOAD_IMAGE_BREED",  payload: null})
 		dispatch({  type: "LOAD_LIST_SUB_BREED",  payload: null})
-		console.log("SeeBreed", breed )
-		this.loadSeeBreed(breed)
+		dispatch({  type: "CHOOSE_BREED",  payload: breed})
+		console.log("breed-", breed )
+		loadSeeBreed(this.props, breed, urlRandom)
 	}
 
-
-loadSeeBreed(breed) {
-  const { dispatch} = this.props
-	//https://dog.ceo/api/breed/hound/images
-  let url="https://dog.ceo/api/breed/"+breed+"/images"
-  fetch(url)
-    .then(function(response) {
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' +
-            response.status);
-          return;
-        }
-        response.json().then(function(data) {
-    dispatch({  type: "LOAD_IMAGE_BREED",  payload: data.message})
-        });
-      }
-    )
-    .catch(function(err) {	console.log('Fetch Error :-S', err)	});
-}
-
-  loadData() {
-    const { dispatch} = this.props
-    fetch("https://dog.ceo/api/breeds/list/all")
-      .then(function(response) {
-          if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-              response.status);
-            return;
-          }
-          response.json().then(function(data) {
-      dispatch({  type: "ADD_LIST_DOG",  payload: Object.entries(data.message)})
-      console.log(Object.entries(data.message))
-          });
-        }
-      )
-      .catch(function(err) {	console.log('Fetch Error :-S', err)	});
-  }
-
 //static getDerivedStateFromProps(nextProps, prevState) {}
-
 //getSnapshotBeforeUpdate(prevProps, prevState) {}
 
 componentDidCatch(errorString, errorInfo) {
@@ -84,12 +50,12 @@ this.setState({error: errorString});
 ErrorLoggingTool.log(errorInfo);
 }
 
-	componentDidMount() {this.loadData()}
+	componentDidMount() {loadData(this.props, url)}
 
 render() {
   if(this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>)
 
-		const  {ListImageBreed, listBreed, ListSubBreed}=this.props
+		const  {ListImageBreed, listBreed, ListSubBreed, breedName}=this.props
 
 		if (!listBreed) {
 			return (<p>Loading...</p>)
@@ -103,7 +69,7 @@ render() {
 					<h3 className="positionCenter"> Choose a breed or sub breed of dog to view photos. </h3>
 				<div className="containerAllBreeds">
 					<div className="listBreeds"> <ul>{listDogs} </ul> </div>
-					<div className="imageBreeds"> <LoadViewBreedImage className="imageBreeds" ListImageBreed={ListImageBreed} /> </div>
+					<div className="imageBreeds"> <LoadViewBreedImage  ListImageBreed={ListImageBreed}  breedName={breedName}/> </div>
 				</div>
 				</div>
 			)
@@ -114,17 +80,8 @@ render() {
 const mapStateToProps = state => ({
 	ListImageBreed: state.ListLoadImageBreed,
 	listBreed: state.list,
-	ListSubBreed: state.loadListSubBreed
+	ListSubBreed: state.loadListSubBreed,
+	breedName: state.breedName
 })
 
 export default connect(mapStateToProps)(ViewAllBreedsContainer)
-
-
-/*
-export default connect(
-	state => ({
-		dogBreed: state.loadBreed,
-		listBreed: state.list,
-		ListSubBreed: state.loadListSubBreed
-	}))(ViewAllBreedsContainer)
-*/
