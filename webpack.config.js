@@ -6,9 +6,31 @@ module.exports = {
    output: {
      path: path.resolve(__dirname, 'dist'),
 		 chunkFilename: '[name].bundle.js',
-     filename: 'main.js' 
+     filename: 'main.js'
    },
   module: {
+		/*
+		preLoaders: [ //добавили ESlint в preloaders
+		 {
+			 test: /\.js$/,
+			 loaders: ['eslint'],
+			 include: [
+				 path.resolve(__dirname, "src"),
+			 ],
+		 }
+	 ],
+
+	 loaders: [ //все остальное осталось не тронутым
+	       {
+	         loaders: ['react-hot', 'babel-loader'],
+	         include: [
+	           path.resolve(__dirname, "src"),
+	         ],
+	         test: /\.js$/,
+	         plugins: ['transform-runtime'],
+	       }
+	     ],
+*/
     rules: [
       {
         test: /\.js$/,
@@ -17,6 +39,13 @@ module.exports = {
           loader: "babel-loader"
         }
       },
+
+			{
+			      test: /\.js$/,
+			      exclude: /node_modules/,
+			      use: ['babel-loader', 'eslint-loader']
+			    },
+
       {
         test: /\.html$/,
         use: [

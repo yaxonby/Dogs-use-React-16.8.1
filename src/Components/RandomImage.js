@@ -1,6 +1,5 @@
-import React from "react";
-import {Component} from "react";
-import Fab from '@material-ui/core/Fab';
+import React, { Component } from "react"
+import Fab from '@material-ui/core/Fab'
 
 export default class RandomImage extends Component{
 	constructor(props) {
