@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import Loadable from 'react-loadable'
-import path from 'path'
-import Loading from '../Components/function/Loading'
-import fakeDelay from '../Components/function/fakeDelay'
-import loadData from '../Components/function/loadData'
-import loadSeeBreed from '../Components/function/loadSeeBreed'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Loadable from 'react-loadable';
+import path from 'path';
+import Loading from '../Components/function/Loading';
+import fakeDelay from '../Components/function/fakeDelay';
+import loadData from '../Components/function/loadData';
+import loadSeeBreed from '../Components/function/loadSeeBreed';
 
 const LoadAllBreeds = Loadable({
   loader: () => fakeDelay(400).then(() => import('../Components/ListAllBreeds')),
@@ -17,10 +17,10 @@ const LoadBreedImage = Loadable({
   loader: () => fakeDelay(400).then(() => import('../Components/BreedImage')),
   loading: Loading,
   serverSideRequirePath: path.resolve(__dirname, '../Components/BreedImage'),
-})
+});
 
-const url = 'https://dog.ceo/api/breeds/list/all'
-const urlRandom = '/images'
+const url = 'https://dog.ceo/api/breeds/list/all';
+const urlRandom = '/images';
 
 class AllBreedsContainer extends Component {
   constructor(props) {
@@ -31,35 +31,35 @@ class AllBreedsContainer extends Component {
 
   SeeBreed(breed) {
     const { dispatch } = this.props;
-    dispatch({ type: 'LOAD_IMAGE_BREED', payload: null })
-    dispatch({ type: 'LOAD_LIST_SUB_BREED', payload: null })
-    dispatch({ type: 'CHOOSE_BREED', payload: breed })
-    console.log('breed-', breed)
-    loadSeeBreed(this.props, breed, urlRandom)
+    dispatch({ type: 'LOAD_IMAGE_BREED', payload: null });
+    dispatch({ type: 'LOAD_LIST_SUB_BREED', payload: null });
+    dispatch({ type: 'CHOOSE_BREED', payload: breed });
+    console.log('breed-', breed);
+    loadSeeBreed(this.props, breed, urlRandom);
   }
 
   // static getDerivedStateFromProps(nextProps, prevState) {}
   // getSnapshotBeforeUpdate(prevProps, prevState) {}
 
-  componentDidCatch(errorString, errorInfo) {
-    this.setState({ error: errorString })
+  componentDidCatch(errorString /* ,  errorInfo */) {
+    this.setState({ error: errorString });
     // ErrorLoggingTool.log(errorInfo);
   }
 
-  componentDidMount() { loadData(this.props, url) }
+  componentDidMount() { loadData(this.props, url); }
 
   render() {
     if (this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>);
     const {
       ListImageBreed, listBreed, ListSubBreed, breedName,
-    } = this.props
+    } = this.props;
 
     if (!listBreed) {
-      return (<p>Loading...</p>)
+      return (<p>Loading...</p>);
     }
     const listDogs = listBreed.map((elem, index) => (
     <LoadAllBreeds post={elem} key={index} SeeBreed={this.SeeBreed} ListSubBreed={ListSubBreed} />
-    ))
+    ));
     return (
 <div>
 <h3 className='positionCenter'> Choose a breed or sub breed of dog to view photos. </h3>

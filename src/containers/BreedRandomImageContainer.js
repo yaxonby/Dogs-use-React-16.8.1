@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import Loadable from 'react-loadable'
-import path from 'path'
-import Loading from '../Components/function/Loading'
-import fakeDelay from '../Components/function/fakeDelay'
-import loadData from '../Components/function/loadData'
-import loadSeeBreed from '../Components/function/loadSeeBreed'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Loadable from 'react-loadable';
+import path from 'path';
+import Loading from '../Components/function/Loading';
+import fakeDelay from '../Components/function/fakeDelay';
+import loadData from '../Components/function/loadData';
+import loadSeeBreed from '../Components/function/loadSeeBreed';
 
 const LoadListAllBreeds = Loadable({
   loader: () => fakeDelay(400).then(() => import('../Components/ListAllBreeds')),
@@ -19,8 +19,8 @@ const LoadBreedRandomImage = Loadable({
   serverSideRequirePath: path.resolve(__dirname, '../Components/BreedRandomImage'),
 });
 
-const url = 'https://dog.ceo/api/breeds/list/all'
-const urlRandom = '/images/random'
+const url = 'https://dog.ceo/api/breeds/list/all';
+const urlRandom = '/images/random';
 
 class BreedRandomImageContainer extends Component {
   constructor(props) {
@@ -31,10 +31,10 @@ class BreedRandomImageContainer extends Component {
 
   SeeBreed(breed) {
     const { dispatch } = this.props;
-    dispatch({ type: 'LOAD_IMAGE_BREED', payload: null })
-    dispatch({ type: 'LOAD_LIST_SUB_BREED', payload: null })
-    dispatch({ type: 'CHOOSE_BREED', payload: breed })
-    loadSeeBreed(this.props, breed, urlRandom)
+    dispatch({ type: 'LOAD_IMAGE_BREED', payload: null });
+    dispatch({ type: 'LOAD_LIST_SUB_BREED', payload: null });
+    dispatch({ type: 'CHOOSE_BREED', payload: breed });
+    loadSeeBreed(this.props, breed, urlRandom);
   }
 
   componentDidCatch(errorString /* , errorInfo */) {
@@ -42,22 +42,21 @@ class BreedRandomImageContainer extends Component {
     // ErrorLoggingTool.log(errorInfo);
   }
 
-  componentDidMount() { loadData(this.props, url) }
+  componentDidMount() { loadData(this.props, url); }
 
   render() {
     if (this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>);
     const {
-      // ListImageBreed,
-      listBreed, ListSubBreed, RandomImageBreed, breedName 
-} = this.props
-    const selfprops = this.props
+      listBreed, ListSubBreed, RandomImageBreed, breedName,
+    } = this.props;
+    const selfprops = this.props;
 
     if (!listBreed) {
-      return (<p>Loading...</p>)
+      return (<p>Loading...</p>);
     }
     const listDogs = listBreed.map((elem, index) => (
 <LoadListAllBreeds post={elem} key={index} SeeBreed={this.SeeBreed} ListSubBreed={ListSubBreed} />
-    ))
+    ));
     return (
 <div>
 <h3 className='positionCenter'> Choose a breed of dog to view random photos. </h3>
@@ -70,8 +69,8 @@ urlRandom={urlRandom} selfprops={selfprops}/>
 </div>
 </div>
 </div>
-)
-}
+    );
+  }
 }
 
 const mapStateToProps = state => ({
@@ -79,6 +78,6 @@ const mapStateToProps = state => ({
   RandomImageBreed: state.RandomImageBreed,
   listBreed: state.list,
   ListSubBreed: state.loadListSubBreed,
-})
+});
 
-export default connect(mapStateToProps)(BreedRandomImageContainer)
+export default connect(mapStateToProps)(BreedRandomImageContainer);
