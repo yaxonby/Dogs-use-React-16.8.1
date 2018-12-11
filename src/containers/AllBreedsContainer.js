@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import { createSelector } from 'reselect';
 import loadData from '../Components/function/loadData';
 import loadSeeBreed from '../Components/function/loadSeeBreed';
 import ListAllBreeds from '../Components/ListAllBreeds';
@@ -60,6 +61,14 @@ class AllBreedsContainer extends Component {
     );
   }
 }
+
+/* use to reselect
+const getListImageBreed = state => state.ListLoadImageBreed;
+const getlistBreed = state => state.list;
+const getListSubBreed = state => state.loadListSubBreed;
+const getbreedName = state => state.breedName;
+*/
+
 const mapStateToProps = state => ({
   ListImageBreed: state.ListLoadImageBreed,
   listBreed: state.list,
