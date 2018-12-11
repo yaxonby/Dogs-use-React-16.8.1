@@ -5,13 +5,13 @@ import Header from './Components/Header';
 import Main from './Components/Main';
 
 const App = () => (
-<CssBaseline>
-<div>
-<HelmetHead />
-<Header />
-<Main />
-</div>
-</CssBaseline>
+    <CssBaseline>
+        <div>
+            <HelmetHead />
+            <Header />
+            <Main />
+        </div>
+    </CssBaseline>
 );
 
 export default App;

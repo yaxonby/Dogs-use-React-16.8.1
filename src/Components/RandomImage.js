@@ -27,12 +27,13 @@ export default class RandomImage extends Component {
 
   render() {
     return (
-<div className='positionCenter'> <h3> View random image of dog</h3>
-<div>
-<img src={this.state.randomFoto}/>
-<Fab color='default' variant='round' onClick={this.loadData}> Next</Fab>
-</div>
-</div>
+      <div className='positionCenter'>
+        <h3> View random image of dog</h3>
+        <div>
+          <img src={this.state.randomFoto}/>
+          <Fab color='default' variant='round' onClick={this.loadData}> Next</Fab>
+        </div>
+      </div>
     );
   }
 }

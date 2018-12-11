@@ -18,7 +18,6 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        " ",
         <h3>
            View random image of dog
         </h3>,
@@ -39,7 +38,6 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
-      " ",
       Object {
         "instance": null,
         "key": undefined,
@@ -109,7 +107,6 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          " ",
           <h3>
              View random image of dog
           </h3>,
@@ -130,7 +127,6 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        " ",
         Object {
           "instance": null,
           "key": undefined,

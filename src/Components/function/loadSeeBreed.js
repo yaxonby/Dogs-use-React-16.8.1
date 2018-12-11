@@ -15,6 +15,8 @@ export default function loadSeeBreed(props, breed, urlRandom) {
           dispatch({ type: 'ADD_RANDOM_IMAGE_BREED', payload: data.message });
         }
       });
-    } )
-    .catch((err) => {	console.log('Fetch Error :-S', err);	});
+    })
+    .catch((err) => {
+      console.log('Fetch Error :-S', err);
+    });
 }

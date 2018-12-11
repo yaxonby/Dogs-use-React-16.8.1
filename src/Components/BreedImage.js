@@ -15,16 +15,16 @@ return true
       return (<p> </p>);
     }
     return (
-<div>
-<h3> View images breed {breedName}  </h3>
-<div>
-{ListImageBreed.map((elem, index) => (
-<li className='liStyle' key={index}>
-<MyImage src={elem}/>
-</li>
-))}
-</div>
-</div>
+      <div>
+        <h3> View images breed {breedName}  </h3>
+        <div>
+          {ListImageBreed.map((elem, index) => (
+            <li className='liStyle' key={index}>
+              <MyImage src={elem}/>
+            </li>
+          ))}
+        </div>
+      </div>
     );
   }
 }

@@ -16,20 +16,20 @@ if (process.env.NODE_ENV !== 'production') {
 const store = createStore(rootReducer, applyMiddleware(...middleware));
 
 ReactDOM.render((
-<Provider store={store}>
-<BrowserRouter>
-<App />
-</BrowserRouter>
-</Provider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+       </BrowserRouter>
+    </Provider>
 ), document.getElementById('root'));
 
 // SSR to development
 function getComponent() {
   return import('lodash').then(({ default: _ }) => {
     const element = document.createElement('div');
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.innerHTML = _.join(['The site is made ', 'by Yuri'], ' ');
     return element;
-  }).catch(error => 'An error occurred while loading the component');
+  }).catch(error => `An error occurred while loading the component:${error}`);
 }
 
 getComponent().then((component) => {

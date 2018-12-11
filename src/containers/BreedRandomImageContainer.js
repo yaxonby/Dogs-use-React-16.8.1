@@ -1,23 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Loadable from 'react-loadable';
-import path from 'path';
-import Loading from '../Components/function/Loading';
-import fakeDelay from '../Components/function/fakeDelay';
 import loadData from '../Components/function/loadData';
 import loadSeeBreed from '../Components/function/loadSeeBreed';
-
-const LoadListAllBreeds = Loadable({
-  loader: () => fakeDelay(400).then(() => import('../Components/ListAllBreeds')),
-  loading: Loading,
-  serverSideRequirePath: path.resolve(__dirname, '../Components/ListAllBreeds'),
-});
-
-const LoadBreedRandomImage = Loadable({
-  loader: () => fakeDelay(400).then(() => import('../Components/BreedRandomImage')),
-  loading: Loading,
-  serverSideRequirePath: path.resolve(__dirname, '../Components/BreedRandomImage'),
-});
+import ListAllBreeds from '../Components/ListAllBreeds';
+import BreedRandomImage from '../Components/BreedRandomImage';
 
 const url = 'https://dog.ceo/api/breeds/list/all';
 const urlRandom = '/images/random';
@@ -55,20 +41,22 @@ class BreedRandomImageContainer extends Component {
       return (<p>Loading...</p>);
     }
     const listDogs = listBreed.map((elem, index) => (
-<LoadListAllBreeds post={elem} key={index} SeeBreed={this.SeeBreed} ListSubBreed={ListSubBreed} />
+      <ListAllBreeds post={elem} key={index} SeeBreed={this.SeeBreed} ListSubBreed={ListSubBreed} />
     ));
     return (
-<div>
-<h3 className='positionCenter'> Choose a breed of dog to view random photos. </h3>
-<div className='containerAllBreeds'>
-<div className='listBreeds'> <ul>{listDogs} </ul> </div>
-<div className='imageBreeds'>
-<LoadBreedRandomImage NextSeeBreed={loadSeeBreed}
-breedName={breedName} ListImageBreed={RandomImageBreed}
-urlRandom={urlRandom} selfprops={selfprops}/>
-</div>
-</div>
-</div>
+      <div>
+        <h3 className='positionCenter'> Choose a breed of dog to view random photos. </h3>
+        <div className='containerAllBreeds'>
+          <div className='listBreeds'>
+            <ul>{listDogs}</ul>
+          </div>
+          <div className='imageBreeds'>
+            <BreedRandomImage NextSeeBreed={loadSeeBreed}
+              breedName={breedName} ListImageBreed={RandomImageBreed}
+              urlRandom={urlRandom} selfprops={selfprops}/>
+          </div>
+        </div>
+      </div>
     );
   }
 }

@@ -25,15 +25,15 @@ const LoadBreedRandomImageContainer = Loadable({
 });
 
 const Main = () => (
-<main>
-<Switch>
-<Route exact path='/' component={Home}/>
-<Route path='/all-breeds' component={LoadAllBreedsContainer}/>
-<Route path='/random-image' component={LoadRandomImage}/>
-<Route path='/breed-random-image' component={LoadBreedRandomImageContainer}/>
-<Route component={Home} />
-</Switch>
-</main>
+  <main>
+    <Switch>
+      <Route exact path='/' component={Home}/>
+      <Route path='/all-breeds' component={LoadAllBreedsContainer}/>
+      <Route path='/random-image' component={LoadRandomImage}/>
+      <Route path='/breed-random-image' component={LoadBreedRandomImageContainer}/>
+      <Route component={Home}/>
+    </Switch>
+  </main>
 );
 
 export default Main;

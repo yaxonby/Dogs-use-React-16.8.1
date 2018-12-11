@@ -1,23 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Loadable from 'react-loadable';
-import path from 'path';
-import Loading from '../Components/function/Loading';
-import fakeDelay from '../Components/function/fakeDelay';
 import loadData from '../Components/function/loadData';
 import loadSeeBreed from '../Components/function/loadSeeBreed';
-
-const LoadAllBreeds = Loadable({
-  loader: () => fakeDelay(400).then(() => import('../Components/ListAllBreeds')),
-  loading: Loading,
-  serverSideRequirePath: path.resolve(__dirname, '../Components/ListAllBreeds'),
-});
-
-const LoadBreedImage = Loadable({
-  loader: () => fakeDelay(400).then(() => import('../Components/BreedImage')),
-  loading: Loading,
-  serverSideRequirePath: path.resolve(__dirname, '../Components/BreedImage'),
-});
+import ListAllBreeds from '../Components/ListAllBreeds';
+import BreedImage from '../Components/BreedImage';
 
 const url = 'https://dog.ceo/api/breeds/list/all';
 const urlRandom = '/images';
@@ -58,16 +44,19 @@ class AllBreedsContainer extends Component {
       return (<p>Loading...</p>);
     }
     const listDogs = listBreed.map((elem, index) => (
-    <LoadAllBreeds post={elem} key={index} SeeBreed={this.SeeBreed} ListSubBreed={ListSubBreed} />
+    <ListAllBreeds post={elem} key={index} SeeBreed={this.SeeBreed} ListSubBreed={ListSubBreed} />
     ));
     return (
-<div>
-<h3 className='positionCenter'> Choose a breed or sub breed of dog to view photos. </h3>
-<div className='containerAllBreeds'>
-<div className='listBreeds'> <ul>{listDogs} </ul> </div>
-<div className='imageBreeds'> <LoadBreedImage ListImageBreed={ListImageBreed} breedName={breedName}/> </div>
-</div>
-</div>
+        <div>
+          <h3 className='positionCenter'> Choose a breed or sub breed of dog to view photos. </h3>
+          <div className='containerAllBreeds'>
+            <div className='listBreeds'>
+              <ul>{listDogs} </ul>
+            </div>
+            <div className='imageBreeds'>
+              <BreedImage ListImageBreed={ListImageBreed} breedName={breedName}/> </div>
+            </div>
+        </div>
     );
   }
 }
