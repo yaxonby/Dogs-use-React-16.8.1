@@ -27,7 +27,7 @@ describe('News container initial', () => {
   const newsContainer = shallow(<BreedImage  {...props} />)
 
   it('render initial', () => {
-    expect(newsContainer.find('p')).toHaveLength(1) // .find + 
+    expect(newsContainer.find('p')).toHaveLength(1); // .find + 
     // expect(newsContainer.find('div')).toHaveLength(0) // .find + 
     // expect(newsContainer.find('p').text()).toEqual('Loading...')
   })
