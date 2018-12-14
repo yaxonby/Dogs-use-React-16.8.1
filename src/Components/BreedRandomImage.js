@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Fab from '@material-ui/core/Fab';
 
-export default class BreedRandomImage extends Component {
+export default class BreedRandomImage extends PureComponent {
   render() {
     const {
       ListImageBreed, NextSeeBreed, breedName, urlRandom, selfprops,

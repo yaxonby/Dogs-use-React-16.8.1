@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-export default class ListAllBreeds extends Component {
+export default class ListAllBreeds extends PureComponent {
   render() {
     const { post, SeeBreed } = this.props;
     return (

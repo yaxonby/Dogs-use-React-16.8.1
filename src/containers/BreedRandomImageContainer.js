@@ -17,8 +17,8 @@ class BreedRandomImageContainer extends Component {
 
   SeeBreed(breed) {
     const { dispatch } = this.props;
-    dispatch({ type: 'LOAD_IMAGE_BREED', payload: null });
-    dispatch({ type: 'LOAD_LIST_SUB_BREED', payload: null });
+    // dispatch({ type: 'LOAD_IMAGE_BREED', payload: null });
+    // dispatch({ type: 'LOAD_LIST_SUB_BREED', payload: null });
     dispatch({ type: 'CHOOSE_BREED', payload: breed });
     loadSeeBreed(this.props, breed, urlRandom);
   }

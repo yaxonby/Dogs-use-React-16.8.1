@@ -14,28 +14,54 @@ class AllBreedsContainer extends Component {
     super(props);
     this.state = { error: null };
     this.SeeBreed = this.SeeBreed.bind(this);
+    console.log('Инициализация конструктора');
   }
 
   SeeBreed(breed) {
-    const { dispatch } = this.props;
-    dispatch({ type: 'LOAD_IMAGE_BREED', payload: null });
-    dispatch({ type: 'LOAD_LIST_SUB_BREED', payload: null });
-    dispatch({ type: 'CHOOSE_BREED', payload: breed });
-    console.log('breed-', breed);
+    // const { dispatch } = this.props;
+    // dispatch({ type: 'LOAD_IMAGE_BREED', payload: null });
+    // dispatch({ type: 'LOAD_LIST_SUB_BREED', payload: null });
+    // dispatch({ type: 'CHOOSE_BREED', payload: breed });
+    // console.log('breed-', breed);
     loadSeeBreed(this.props, breed, urlRandom);
   }
 
-  // static getDerivedStateFromProps(nextProps, prevState) {}
-  // getSnapshotBeforeUpdate(prevProps, prevState) {}
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log('getDerivedStateFromProps', 'nextProps=', nextProps, 'prevState=', prevState);
+    return null;
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log('shouldComponentUpdate проверяет');
+    console.log('shouldComponentUpdate', 'nextProps=', nextProps,
+      'nextState=', nextState, 'nextContext=', nextContext);
+    if (this.props !== nextProps) {
+      return true;
+    }
+    if (this.state !== nextState) {
+      return true;
+    }
+    console.log('shouldComponentUpdate возвращает false');
+    return false;
+  }
+
+  // getSnapshotBeforeUpdate(prevProps, prevState) {
+  // console.log('getSnapshotBeforeUpdate', 'prevProps=', prevProps, 'prevState', prevState);
+  // return null;
+  // }
 
   componentDidCatch(errorString /* ,  errorInfo */) {
     this.setState({ error: errorString });
     // ErrorLoggingTool.log(errorInfo);
   }
 
-  componentDidMount() { loadData(this.props, url); }
+  componentDidMount() {
+    console.log('DidMount --> loadData');
+    loadData(this.props, url);
+  }
 
   render() {
+    console.log('render');
     if (this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>);
     const {
       ListImageBreed, listBreed, ListSubBreed, breedName,

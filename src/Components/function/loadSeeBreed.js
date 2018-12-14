@@ -1,6 +1,6 @@
 export default function loadSeeBreed(props, breed, urlRandom) {
   const { dispatch } = props;
-  console.log('breed=', breed);
+  // console.log('breed=', breed);
   const url = `https://dog.ceo/api/breed/${breed}${urlRandom}`;
   fetch(url)
     .then((response) => {
@@ -10,6 +10,7 @@ export default function loadSeeBreed(props, breed, urlRandom) {
       }
       response.json().then((data) => {
         if (urlRandom === '/images') {
+          dispatch({ type: 'CHOOSE_BREED', payload: breed });
           dispatch({ type: 'LOAD_IMAGE_BREED', payload: data.message });
         } else {
           dispatch({ type: 'ADD_RANDOM_IMAGE_BREED', payload: data.message });

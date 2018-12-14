@@ -9,8 +9,9 @@ export default function loadData(props, url) {
         return;
       }
       response.json().then((data) => {
+        console.log('loadData загрузил и отправляет dispatch');
         dispatch({ type: 'ADD_LIST_DOG', payload: Object.entries(data.message) });
-        console.log(Object.entries(data.message));
+        // console.log(Object.entries(data.message));
       });
     })
     .catch((err) => { console.log('Fetch Error :-S', err); });

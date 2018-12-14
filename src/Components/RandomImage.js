@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Fab from '@material-ui/core/Fab';
 
-export default class RandomImage extends Component {
+export default class RandomImage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { randomFoto: null };
