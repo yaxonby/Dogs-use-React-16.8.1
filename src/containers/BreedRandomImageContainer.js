@@ -12,15 +12,6 @@ class BreedRandomImageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { error: null };
-    this.SeeBreed = this.SeeBreed.bind(this);
-  }
-
-  SeeBreed(breed) {
-    const { dispatch } = this.props;
-    // dispatch({ type: 'LOAD_IMAGE_BREED', payload: null });
-    // dispatch({ type: 'LOAD_LIST_SUB_BREED', payload: null });
-    dispatch({ type: 'CHOOSE_BREED', payload: breed });
-    loadSeeBreed(this.props, breed, urlRandom);
   }
 
   componentDidCatch(errorString /* , errorInfo */) {
@@ -28,20 +19,22 @@ class BreedRandomImageContainer extends Component {
     // ErrorLoggingTool.log(errorInfo);
   }
 
-  componentDidMount() { loadData(this.props, url); }
+  componentDidMount() {
+    this.props.loadDataActCreator(url);
+  }
 
   render() {
     if (this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>);
     const {
-      listBreed, ListSubBreed, RandomImageBreed, breedName,
+      listBreed, ListSubBreed, RandomImageBreed, breedName, SeeBreedActCreator,
     } = this.props;
-    const selfprops = this.props;
 
     if (!listBreed) {
       return (<p>Loading...</p>);
     }
     const listDogs = listBreed.map((elem, index) => (
-      <ListAllBreeds post={elem} key={index} SeeBreed={this.SeeBreed} ListSubBreed={ListSubBreed} />
+      <ListAllBreeds post={elem} key={index} urlRandom={urlRandom}
+      SeeBreedActCreator={SeeBreedActCreator} ListSubBreed={ListSubBreed} />
     ));
     return (
       <div>
@@ -51,15 +44,20 @@ class BreedRandomImageContainer extends Component {
             <ul>{listDogs}</ul>
           </div>
           <div className='imageBreeds'>
-            <BreedRandomImage NextSeeBreed={loadSeeBreed}
-              breedName={breedName} ListImageBreed={RandomImageBreed}
-              urlRandom={urlRandom} selfprops={selfprops}/>
+          <BreedRandomImage NextSeeBreed={SeeBreedActCreator}
+          breedName={breedName} RandomImageBreed={RandomImageBreed}
+          urlRandom={urlRandom} />
           </div>
         </div>
       </div>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  SeeBreedActCreator: (breed, anyurlRandom) => dispatch(loadSeeBreed(...[breed, anyurlRandom])),
+  loadDataActCreator: anyUrl => dispatch(loadData(anyUrl)),
+});
 
 const mapStateToProps = state => ({
   breedName: state.breedName,
@@ -68,4 +66,4 @@ const mapStateToProps = state => ({
   ListSubBreed: state.loadListSubBreed,
 });
 
-export default connect(mapStateToProps)(BreedRandomImageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(BreedRandomImageContainer);

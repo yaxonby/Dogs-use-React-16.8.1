@@ -2,21 +2,25 @@ import React, { PureComponent } from 'react';
 import Fab from '@material-ui/core/Fab';
 
 export default class BreedRandomImage extends PureComponent {
+  handleClick() {
+    console.log(this.props.breedName, this.props.urlRandom);
+    this.props.NextSeeBreed(this.props.breedName, this.props.urlRandom);
+  }
+
   render() {
     const {
-      ListImageBreed, NextSeeBreed, breedName, urlRandom, selfprops,
+      RandomImageBreed, breedName,
     } = this.props;
-    if (!ListImageBreed) {
+    if (!RandomImageBreed) {
       return (<p></p>);
     }
     return (
 <div className='positionCenter'>
 <h3> View images breed {breedName}  </h3>
 <div>
-<img src={ListImageBreed}/>
+<img src={RandomImageBreed}/>
 <Fab color='default' variant='round'
-onClick={NextSeeBreed.bind(null, selfprops, breedName, urlRandom)}
-> Next</Fab>
+onClick={this.handleClick.bind(this)}> Next </Fab>
 </div>
 </div>);
   }

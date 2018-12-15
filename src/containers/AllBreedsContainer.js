@@ -13,17 +13,7 @@ class AllBreedsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { error: null };
-    this.SeeBreed = this.SeeBreed.bind(this);
     console.log('Инициализация конструктора');
-  }
-
-  SeeBreed(breed) {
-    // const { dispatch } = this.props;
-    // dispatch({ type: 'LOAD_IMAGE_BREED', payload: null });
-    // dispatch({ type: 'LOAD_LIST_SUB_BREED', payload: null });
-    // dispatch({ type: 'CHOOSE_BREED', payload: breed });
-    // console.log('breed-', breed);
-    loadSeeBreed(this.props, breed, urlRandom);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -57,21 +47,22 @@ class AllBreedsContainer extends Component {
 
   componentDidMount() {
     console.log('DidMount --> loadData');
-    loadData(this.props, url);
+    this.props.loadDataActCreator(url);
   }
 
   render() {
     console.log('render');
     if (this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>);
     const {
-      ListImageBreed, listBreed, ListSubBreed, breedName,
+      ListImageBreed, listBreed, ListSubBreed, breedName, SeeBreedActCreator,
     } = this.props;
 
     if (!listBreed) {
       return (<p>Loading...</p>);
     }
     const listDogs = listBreed.map((elem, index) => (
-    <ListAllBreeds post={elem} key={index} SeeBreed={this.SeeBreed} ListSubBreed={ListSubBreed} />
+    <ListAllBreeds post={elem} key={index} SeeBreedActCreator={SeeBreedActCreator}
+    ListSubBreed={ListSubBreed} urlRandom={urlRandom}/>
     ));
     return (
         <div>
@@ -95,6 +86,11 @@ const getListSubBreed = state => state.loadListSubBreed;
 const getbreedName = state => state.breedName;
 */
 
+const mapDispatchToProps = dispatch => ({
+  SeeBreedActCreator: (breed, anyurlRandom) => dispatch(loadSeeBreed(...[breed, anyurlRandom])),
+  loadDataActCreator: anyUrl => dispatch(loadData(anyUrl)),
+});
+
 const mapStateToProps = state => ({
   ListImageBreed: state.ListLoadImageBreed,
   listBreed: state.list,
@@ -102,4 +98,4 @@ const mapStateToProps = state => ({
   breedName: state.breedName,
 });
 
-export default connect(mapStateToProps)(AllBreedsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AllBreedsContainer);
