@@ -35,14 +35,18 @@ class AllBreedsContainer extends Component {
     return false;
   }
 
-  // getSnapshotBeforeUpdate(prevProps, prevState) {
-  // console.log('getSnapshotBeforeUpdate', 'prevProps=', prevProps, 'prevState', prevState);
-  // return null;
-  // }
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    if (this.props) console.log('getSnapshotBeforeUpdate', 'prevProps=', prevProps, 'prevState', prevState);
+    return null;
+  }
 
   componentDidCatch(errorString /* ,  errorInfo */) {
     this.setState({ error: errorString });
     // ErrorLoggingTool.log(errorInfo);
+  }
+
+  componentDidUpdate() {
+    console.log('DidUpdate ');
   }
 
   componentDidMount() {

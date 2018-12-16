@@ -10,6 +10,7 @@ export default class HelmetHead extends Component {
           <meta charSet='utf-8' />
           <title>Dogs picture</title>
           <link rel='canonical' href='https://github.com/yaxonby/Dogs' />
+          <meta charset='utf-8'></meta>
         </Helmet>
       </div>
     );
