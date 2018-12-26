@@ -21,7 +21,6 @@ export default function loadSeeBreed(breed, urlRandom) {
             console.log('data=', data.message);
             dispatch({ type: 'CHOOSE_BREED', payload: breed });
             dispatch({ type: 'ADD_RANDOM_IMAGE_BREED', payload: data.message });
-            
           }
         });
       })

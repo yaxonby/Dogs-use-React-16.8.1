@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import path from 'path';
@@ -24,15 +24,20 @@ const LoadBreedRandomImageContainer = Loadable({
   serverSideRequirePath: path.resolve(__dirname, '../containers/BreedRandomImageContainer'),
 });
 
+const PdfCreateContainer = lazy(() => import('../containers/PdfCreateContainer'));
+
 const Main = () => (
   <main>
-    <Switch>
-      <Route exact path='/' component={Home}/>
-      <Route path='/all-breeds' component={LoadAllBreedsContainer}/>
-      <Route path='/random-image' component={LoadRandomImage}/>
-      <Route path='/breed-random-image' component={LoadBreedRandomImageContainer}/>
-      <Route component={Home}/>
-    </Switch>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route path='/all-breeds' component={LoadAllBreedsContainer}/>
+        <Route path='/random-image' component={LoadRandomImage}/>
+        <Route path='/breed-random-image' component={LoadBreedRandomImageContainer}/>
+        <Suspense fallback={<div> ...Loading </div>}>
+          <Route path='/pdf-create' component={PdfCreateContainer}/>
+        </Suspense>
+        <Route component={Home}/>
+      </Switch>
   </main>
 );
 

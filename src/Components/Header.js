@@ -26,6 +26,11 @@ const Header = () => (
                     <span> Random image breed</span>
                 </Fab>
              </Link>
+             <Link to='/pdf-create'>
+                <Fab color='default' variant='extended'>
+                    <span> Pdf create</span>
+                </Fab>
+             </Link>
         </nav>
     </header>
 );

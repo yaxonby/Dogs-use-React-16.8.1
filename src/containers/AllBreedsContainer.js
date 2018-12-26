@@ -46,7 +46,7 @@ class AllBreedsContainer extends Component {
   }
 
   componentDidUpdate() {
-    console.log('DidUpdate ');
+    console.log(this, 'DidUpdate ');
   }
 
   componentDidMount() {

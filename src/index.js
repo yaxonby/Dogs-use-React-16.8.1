@@ -6,6 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+// import { resolve } from 'path';
 import App from './App';
 import rootReducer from './reducers/index';
 
