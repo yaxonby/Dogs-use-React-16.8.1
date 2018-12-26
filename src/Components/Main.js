@@ -26,6 +26,8 @@ const LoadBreedRandomImageContainer = Loadable({
 
 const PdfCreateContainer = lazy(() => import('../containers/PdfCreateContainer'));
 
+const LoginComponent = lazy(() => import('./LoginComponent'));
+
 const Main = () => (
   <main>
       <Switch>
@@ -35,6 +37,7 @@ const Main = () => (
         <Route path='/breed-random-image' component={LoadBreedRandomImageContainer}/>
         <Suspense fallback={<div> ...Loading </div>}>
           <Route path='/pdf-create' component={PdfCreateContainer}/>
+          <Route path='/login' component={LoginComponent}/>
         </Suspense>
         <Route component={Home}/>
       </Switch>

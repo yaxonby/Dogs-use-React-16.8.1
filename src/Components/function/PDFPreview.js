@@ -7,15 +7,11 @@ import {
 
 // Create Document Component
 const PDFPreview = ({ title }) => (
-  <PDFViewer className='viewerPdf' // style={pdfstyles.viewer}
-  >
+  <PDFViewer className='viewerPdf'>
     <Document>
-      <Page size='A4' // style={pdfstyles.page}
-      >
-        <View // style={pdfstyles.section}
-        >
-          <Text // style={pdfstyles.title}
-          >{title}</Text>
+      <Page size='A5'>
+        <View>
+          <Text>{title}</Text>
           <Text>This is a text in a generated PDF file.</Text>
         </View>
       </Page>
