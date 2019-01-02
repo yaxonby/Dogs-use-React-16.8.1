@@ -1,3 +1,35 @@
+'use strict';
+
+const car = {
+  audi: 'a3',
+  wheel: 4,
+};
+
+console.log(Object.keys(car).map((item, i, arr) => [item, i, arr]));
+console.log(Object.values(car));
+console.log(Object.entries(car));
+
+const map = new Map();
+map.set(1, 'yura');
+console.log(map.get(1));
+
+
+const user = {
+  name: 'Yura',
+  surname: 'Nadolskiy',
+  set fullname(value) {
+    const arr = value.split(' ');
+    this.name = arr[0];
+    this.surname = arr[1];
+  },
+  get fullname() {
+    return this.name + this.surname;
+  },
+};
+user.fullname = 'Sergey Garist';
+console.log(user.fullname);
+
+
 import React, { Component, createElement } from 'react';
 import ReactDOM from 'react-dom';
 import PDFPreview from '../Components/function/PDFPreview';
