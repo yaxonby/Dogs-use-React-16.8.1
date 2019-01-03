@@ -29,6 +29,37 @@ const user = {
 user.fullname = 'Sergey Garist';
 console.log(user.fullname);
 
+const mather = 'Galya';
+const word = `Happy new year ${mather}`;
+console.log(word);
+
+const books = [1, 2, 3];
+const book = 4;
+console.log([...books, book]);
+
+const name = 'Yura';
+function func(str, val) {
+  console.log(...str);
+  console.log(...val);
+}
+func`Hi, my name is ${name} ${name}`;
+
+
+const pen = {
+  color() {
+    console.log('super - color');
+  },
+};
+
+const knife = {
+  __proto__: pen,
+  tut() {
+    console.log('- knife');
+    super.color();
+  },
+};
+knife.tut();
+
 
 import React, { Component, createElement } from 'react';
 import ReactDOM from 'react-dom';
