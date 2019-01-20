@@ -1,8 +1,31 @@
-'use strict';
+import React, { Component, createElement } from 'react';
+import ReactDOM from 'react-dom';
+import PDFPreview from '../Components/function/PDFPreview';
+
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  names() {
+    return this.name;
+  }
+}
+
+class Leon extends Animal {
+  constructor() {
+    super();
+    // this.user = val;
+  }
+}
+
+const leon = new Leon('lew');
+console.log(leon.names());
+// leon();
 
 const car = {
   audi: 'a3',
-  wheel: 4,
+  wheel: 4
 };
 
 console.log(Object.keys(car).map((item, i, arr) => [item, i, arr]));
@@ -12,7 +35,6 @@ console.log(Object.entries(car));
 const map = new Map();
 map.set(1, 'yura');
 console.log(map.get(1));
-
 
 const user = {
   name: 'Yura',
@@ -24,7 +46,7 @@ const user = {
   },
   get fullname() {
     return this.name + this.surname;
-  },
+  }
 };
 user.fullname = 'Sergey Garist';
 console.log(user.fullname);
@@ -44,11 +66,10 @@ function func(str, val) {
 }
 func`Hi, my name is ${name} ${name}`;
 
-
 const pen = {
   color() {
     console.log('super - color');
-  },
+  }
 };
 
 const knife = {
@@ -56,59 +77,31 @@ const knife = {
   tut() {
     console.log('- knife');
     super.color();
-  },
+  }
 };
 knife.tut();
-
-
-import React, { Component, createElement } from 'react';
-import ReactDOM from 'react-dom';
-import PDFPreview from '../Components/function/PDFPreview';
 // import { get } from 'https';
-
-const UserContext = React.createContext('I is on holiday.');
 
 let el = document.createElement('div');
 el.className = 'portal';
 document.getElementsByTagName('div')[0].appendChild(el);
 el = document.getElementsByClassName('portal')[0];
 
-const User = () => (
-  <div>
-    <span>User</span>
-    <InformationUser>
-      <PersonalData />
-    </InformationUser>
-    <UserContext.Consumer>
-      {val => <Commets val={val} />}
-    </UserContext.Consumer>
-  </div>);
+const userContext = React.createContext('Yura');
 
-class InformationUser extends React.Component {
-   static contextType = UserContext;
-
-   render() {
-     console.log(this.context);
-     return ReactDOM.createPortal(this.props.children, el);
-   }
+class Comment extends React.Component {
+  render() {
+    console.log('commit', this.context);
+    return <div> commet</div>;
+  }
 }
 
-function PersonalData() {
-  return (<div> Personal data</div>)
-}
-
-// InformationUser.contextType = UserContext;
-
-function Commets(props) {
-  return (
-<div> Commets: {props.val}</div>
-  );
-}
+Comment.contextType = userContext;
 
 class PdfCreateContainer extends Component {
   state = {
     name: '',
-    showPDFPreview: false,
+    showPDFPreview: false
   };
 
   handleClick = () => this.setState({ showPDFPreview: true });
@@ -117,23 +110,26 @@ class PdfCreateContainer extends Component {
 
   render() {
     const greeting = `Hello ${this.state.name}`;
-
+    console.log('context-', this.context);
+    const user = 'Natalia';
     return (
-      <div className='PDF'>
-        <input
-          placeholder='Enter your name'
-          type='text'
-          onChange={this.handleNameChange}
-        />
-        <button onClick={this.handleClick}>Generate PDF</button>
-        {this.state.showPDFPreview && <PDFPreview title={greeting} />}
-
-        <UserContext.Provider value={'I work.'}>
-          <User />
-        </UserContext.Provider>
-</div>
+      <userContext.Provider value={user}>
+        <div className="PDF">
+          <Comment />
+          {this.context}
+          <input
+            placeholder="Enter your name"
+            type="text"
+            onChange={this.handleNameChange}
+          />
+          <button onClick={this.handleClick}>Generate PDF</button>
+          {this.state.showPDFPreview && <PDFPreview title={greeting} />}
+        </div>
+      </userContext.Provider>
     );
   }
 }
+
+PdfCreateContainer.contextType = userContext;
 
 export default PdfCreateContainer;
