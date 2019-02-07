@@ -24,29 +24,45 @@ class BreedRandomImageContainer extends Component {
   }
 
   render() {
-    if (this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>);
+    if (this.state.error)
+      return <div> Извините к нам пришел: {this.state.error} </div>;
     const {
-      listBreed, ListSubBreed, RandomImageBreed, breedName, SeeBreedActCreator,
+      listBreed,
+      ListSubBreed,
+      RandomImageBreed,
+      breedName,
+      SeeBreedActCreator
     } = this.props;
 
     if (!listBreed) {
-      return (<p>Loading...</p>);
+      return <p>Loading...</p>;
     }
     const listDogs = listBreed.map((elem, index) => (
-      <ListAllBreeds post={elem} key={index} urlRandom={urlRandom}
-      SeeBreedActCreator={SeeBreedActCreator} ListSubBreed={ListSubBreed} />
+      <ListAllBreeds
+        post={elem}
+        key={index}
+        urlRandom={urlRandom}
+        SeeBreedActCreator={SeeBreedActCreator}
+        ListSubBreed={ListSubBreed}
+      />
     ));
     return (
       <div>
-        <h3 className='positionCenter'> Choose a breed of dog to view random photos. </h3>
-        <div className='containerAllBreeds'>
-          <div className='listBreeds'>
+        <h3 className="positionCenter">
+          {' '}
+          Choose a breed of dog to view random photos.{' '}
+        </h3>
+        <div className="containerAllBreeds">
+          <div className="listBreeds">
             <ul>{listDogs}</ul>
           </div>
-          <div className='imageBreeds'>
-          <BreedRandomImage NextSeeBreed={SeeBreedActCreator}
-          breedName={breedName} RandomImageBreed={RandomImageBreed}
-          urlRandom={urlRandom} />
+          <div className="imageBreeds">
+            <BreedRandomImage
+              NextSeeBreed={SeeBreedActCreator}
+              breedName={breedName}
+              RandomImageBreed={RandomImageBreed}
+              urlRandom={urlRandom}
+            />
           </div>
         </div>
       </div>
@@ -55,15 +71,19 @@ class BreedRandomImageContainer extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  SeeBreedActCreator: (breed, anyurlRandom) => dispatch(loadSeeBreed(...[breed, anyurlRandom])),
-  loadDataActCreator: anyUrl => dispatch(loadData(anyUrl)),
+  SeeBreedActCreator: (breed, anyurlRandom) =>
+    dispatch(loadSeeBreed(...[breed, anyurlRandom])),
+  loadDataActCreator: anyUrl => dispatch(loadData(anyUrl))
 });
 
 const mapStateToProps = state => ({
   breedName: state.breedName,
   RandomImageBreed: state.RandomImageBreed,
   listBreed: state.list,
-  ListSubBreed: state.loadListSubBreed,
+  ListSubBreed: state.loadListSubBreed
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BreedRandomImageContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BreedRandomImageContainer);

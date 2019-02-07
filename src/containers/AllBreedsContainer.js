@@ -17,14 +17,27 @@ class AllBreedsContainer extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log('getDerivedStateFromProps', 'nextProps=', nextProps, 'prevState=', prevState);
+    console.log(
+      'getDerivedStateFromProps',
+      'nextProps=',
+      nextProps,
+      'prevState=',
+      prevState
+    );
     return null;
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     console.log('shouldComponentUpdate проверяет');
-    console.log('shouldComponentUpdate', 'nextProps=', nextProps,
-      'nextState=', nextState, 'nextContext=', nextContext);
+    console.log(
+      'shouldComponentUpdate',
+      'nextProps=',
+      nextProps,
+      'nextState=',
+      nextState,
+      'nextContext=',
+      nextContext
+    );
     if (this.props !== nextProps) {
       return true;
     }
@@ -36,7 +49,14 @@ class AllBreedsContainer extends Component {
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    if (this.props) console.log('getSnapshotBeforeUpdate', 'prevProps=', prevProps, 'prevState', prevState);
+    if (this.props)
+      console.log(
+        'getSnapshotBeforeUpdate',
+        'prevProps=',
+        prevProps,
+        'prevState',
+        prevState
+      );
     return null;
   }
 
@@ -56,29 +76,43 @@ class AllBreedsContainer extends Component {
 
   render() {
     console.log('render');
-    if (this.state.error) return (<div> Извините к нам пришел: {this.state.error} </div>);
+    if (this.state.error)
+      return <div> Извините к нам пришел: {this.state.error} </div>;
     const {
-      ListImageBreed, listBreed, ListSubBreed, breedName, SeeBreedActCreator,
+      ListImageBreed,
+      listBreed,
+      ListSubBreed,
+      breedName,
+      SeeBreedActCreator
     } = this.props;
 
     if (!listBreed) {
-      return (<p>Loading...</p>);
+      return <p>Loading...</p>;
     }
     const listDogs = listBreed.map((elem, index) => (
-    <ListAllBreeds post={elem} key={index} SeeBreedActCreator={SeeBreedActCreator}
-    ListSubBreed={ListSubBreed} urlRandom={urlRandom}/>
+      <ListAllBreeds
+        post={elem}
+        key={index}
+        SeeBreedActCreator={SeeBreedActCreator}
+        ListSubBreed={ListSubBreed}
+        urlRandom={urlRandom}
+      />
     ));
     return (
-        <div>
-          <h3 className='positionCenter'> Choose a breed or sub breed of dog to view photos. </h3>
-          <div className='containerAllBreeds'>
-            <div className='listBreeds'>
-              <ul>{listDogs} </ul>
-            </div>
-            <div className='imageBreeds'>
-              <BreedImage ListImageBreed={ListImageBreed} breedName={breedName}/> </div>
-            </div>
+      <div>
+        <h3 className="positionCenter">
+          {' '}
+          Choose a breed or sub breed of dog to view photos.{' '}
+        </h3>
+        <div className="containerAllBreeds">
+          <div className="listBreeds">
+            <ul>{listDogs} </ul>
+          </div>
+          <div className="imageBreeds">
+            <BreedImage ListImageBreed={ListImageBreed} breedName={breedName} />{' '}
+          </div>
         </div>
+      </div>
     );
   }
 }
@@ -91,15 +125,19 @@ const getbreedName = state => state.breedName;
 */
 
 const mapDispatchToProps = dispatch => ({
-  SeeBreedActCreator: (breed, anyurlRandom) => dispatch(loadSeeBreed(...[breed, anyurlRandom])),
-  loadDataActCreator: anyUrl => dispatch(loadData(anyUrl)),
+  SeeBreedActCreator: (breed, anyurlRandom) =>
+    dispatch(loadSeeBreed(...[breed, anyurlRandom])),
+  loadDataActCreator: anyUrl => dispatch(loadData(anyUrl))
 });
 
 const mapStateToProps = state => ({
   ListImageBreed: state.ListLoadImageBreed,
   listBreed: state.list,
   ListSubBreed: state.loadListSubBreed,
-  breedName: state.breedName,
+  breedName: state.breedName
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllBreedsContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AllBreedsContainer);
