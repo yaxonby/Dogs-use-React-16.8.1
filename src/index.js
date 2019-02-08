@@ -16,14 +16,16 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const store = createStore(rootReducer, applyMiddleware(...middleware));
 
-ReactDOM.render((
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-       </BrowserRouter>
-    </Provider>
-), document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root')
+);
 
+/*
 // SSR to development
 function getComponent() {
   return import('lodash').then(({ default: _ }) => {
@@ -36,3 +38,4 @@ function getComponent() {
 getComponent().then((component) => {
   document.body.appendChild(component);
 });
+*/

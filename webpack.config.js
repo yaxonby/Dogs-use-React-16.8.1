@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     chunkFilename: '[name].bundle.js',
-    filename: 'main.js',
+    filename: 'main.js'
   },
   module: {
     rules: [
@@ -15,38 +15,36 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: 'babel-loader'
+        }
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: ['babel-loader', 'eslint-loader']
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader',
-          },
-        ],
+            loader: 'html-loader'
+          }
+        ]
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader'],
-        }),
-      },
-    ],
+          use: ['css-loader']
+        })
+      }
+    ]
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
-      filename: './index.html',
+      filename: './index.html'
     }),
-    new ExtractTextPlugin(
-      { filename: 'style.css' },
-    ),
-  ],
+    new ExtractTextPlugin({ filename: 'style.css' })
+  ]
 };

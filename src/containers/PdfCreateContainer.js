@@ -1,4 +1,4 @@
-import React, { Component, createElement } from 'react';
+import React, { Component, createElement, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 class PdfCreateContainer extends Component {
@@ -20,8 +20,24 @@ class PdfCreateContainer extends Component {
   }
 
   render() {
-    return <div>{this.state.date.toLocaleTimeString()}</div>;
+    return (
+      <div>
+        {this.state.date.toLocaleTimeString()}
+        <Example />
+      </div>
+    );
   }
+}
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  );
 }
 
 /*
