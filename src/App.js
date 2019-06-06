@@ -7,9 +7,9 @@ import Main from './Components/Main';
 const App = () => (
     <CssBaseline>
         <div>
-            <HelmetHead />
-            <Header />
-            <Main />
+            <HelmetHead/>
+            <Header/>
+            <Main/>
         </div>
     </CssBaseline>
 );

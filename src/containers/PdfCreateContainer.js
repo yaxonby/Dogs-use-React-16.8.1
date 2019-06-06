@@ -1,43 +1,43 @@
-import React, { Component, createElement, useState } from 'react';
+import React, {Component, createElement, useState} from 'react';
 import ReactDOM from 'react-dom';
 
 class PdfCreateContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { date: new Date() };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {date: new Date()};
+    }
 
-  componentDidMount() {
-    this.interval = setInterval(
-      () => this.setState({ date: new Date() }),
-      1000
-    );
-  }
+    componentDidMount() {
+        this.interval = setInterval(
+            () => this.setState({date: new Date()}),
+            1000
+        );
+    }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-    console.log('освободили ресурсы');
-  }
+    componentWillUnmount() {
+        clearInterval(this.interval);
+        console.log('освободили ресурсы');
+    }
 
-  render() {
-    return (
-      <div>
-        {this.state.date.toLocaleTimeString()}
-        <Example />
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                {this.state.date.toLocaleTimeString()}
+                <Example/>
+            </div>
+        );
+    }
 }
 
 function Example() {
-  const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
 
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
-    </div>
-  );
+    return (
+        <div>
+            <p>You clicked {count} times</p>
+            <button onClick={() => setCount(count + 1)}>Click me</button>
+        </div>
+    );
 }
 
 /*

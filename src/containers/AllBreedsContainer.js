@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 // import { createSelector } from 'reselect';
 import loadData from '../Components/function/loadData';
 import loadSeeBreed from '../Components/function/loadSeeBreed';
@@ -10,111 +10,113 @@ const url = 'https://dog.ceo/api/breeds/list/all';
 const urlRandom = '/images';
 
 class AllBreedsContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { error: null };
-    console.log('Инициализация конструктора');
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(
-      'getDerivedStateFromProps',
-      'nextProps=',
-      nextProps,
-      'prevState=',
-      prevState
-    );
-    return null;
-  }
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    console.log('shouldComponentUpdate проверяет');
-    console.log(
-      'shouldComponentUpdate',
-      'nextProps=',
-      nextProps,
-      'nextState=',
-      nextState,
-      'nextContext=',
-      nextContext
-    );
-    if (this.props !== nextProps) {
-      return true;
+    constructor(props) {
+        super(props);
+        this.state = {error: null};
+        console.log('Инициализация конструктора');
     }
-    if (this.state !== nextState) {
-      return true;
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log(
+            'getDerivedStateFromProps',
+            'nextProps=',
+            nextProps,
+            'prevState=',
+            prevState
+        );
+        return null;
     }
-    console.log('shouldComponentUpdate возвращает false');
-    return false;
-  }
 
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    if (this.props)
-      console.log(
-        'getSnapshotBeforeUpdate',
-        'prevProps=',
-        prevProps,
-        'prevState',
-        prevState
-      );
-    return null;
-  }
-
-  componentDidCatch(errorString /* ,  errorInfo */) {
-    this.setState({ error: errorString });
-    // ErrorLoggingTool.log(errorInfo);
-  }
-
-  componentDidUpdate() {
-    console.log(this, 'DidUpdate ');
-  }
-
-  componentDidMount() {
-    console.log('DidMount --> loadData');
-    this.props.loadDataActCreator(url);
-  }
-
-  render() {
-    console.log('render');
-    if (this.state.error)
-      return <div> Извините к нам пришел: {this.state.error} </div>;
-    const {
-      ListImageBreed,
-      listBreed,
-      ListSubBreed,
-      breedName,
-      SeeBreedActCreator
-    } = this.props;
-
-    if (!listBreed) {
-      return <p>Loading...</p>;
+    componentDidMount() {
+        console.log('DidMount --> loadData');
+        this.loadDataActCreator(url);
     }
-    const listDogs = listBreed.map((elem, index) => (
-      <ListAllBreeds
-        post={elem}
-        key={index}
-        SeeBreedActCreator={SeeBreedActCreator}
-        ListSubBreed={ListSubBreed}
-        urlRandom={urlRandom}
-      />
-    ));
-    return (
-      <div>
-        <h3 className="positionCenter">
-          {' '}
-          Choose a breed or sub breed of dog to view photos.{' '}
-        </h3>
-        <div className="containerAllBreeds">
-          <div className="listBreeds">
-            <ul>{listDogs} </ul>
-          </div>
-          <div className="imageBreeds">
-            <BreedImage ListImageBreed={ListImageBreed} breedName={breedName} />{' '}
-          </div>
-        </div>
-      </div>
-    );
-  }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log('shouldComponentUpdate проверяет');
+        console.log(
+            'shouldComponentUpdate',
+            'nextProps=',
+            nextProps,
+            'nextState=',
+            nextState,
+            'nextContext=',
+            nextContext
+        );
+        if (this.props !== nextProps) {
+            return true;
+        }
+        if (this.state !== nextState) {
+            return true;
+        }
+        console.log('shouldComponentUpdate возвращает false');
+        return false;
+    }
+
+
+    componentDidUpdate() {
+        console.log(this, 'DidUpdate ');
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        if (this.props)
+            console.log(
+                'getSnapshotBeforeUpdate',
+                'prevProps=',
+                prevProps,
+                'prevState',
+                prevState
+            );
+        return null;
+    }
+
+    componentDidCatch(errorString /* ,  errorInfo */) {
+        this.setState({error: errorString});
+        // ErrorLoggingTool.log(errorInfo);
+    }
+
+
+    render() {
+        console.log('render');
+        if (this.state.error)
+            return <div> Извините к нам пришел: {this.state.error} </div>;
+        const {
+            ListImageBreed,
+            listBreed,
+            ListSubBreed,
+            breedName,
+            SeeBreedActCreator
+        } = this.props;
+
+        if (!listBreed) {
+            return <p>Loading...</p>;
+        }
+        const listDogs = listBreed.map((elem, index) => (
+            <ListAllBreeds
+                post={elem}
+                key={index}
+                SeeBreedActCreator={SeeBreedActCreator}
+                ListSubBreed={ListSubBreed}
+                urlRandom={urlRandom}
+            />
+        ));
+        return (
+            <div>
+                <h3 className="positionCenter">
+                    {' '}
+                    Choose a breed or sub breed of dog to view photos.{' '}
+                </h3>
+                <div className="containerAllBreeds">
+                    <div className="listBreeds">
+                        <ul>{listDogs} </ul>
+                    </div>
+                    <div className="imageBreeds">
+                        <BreedImage ListImageBreed={ListImageBreed} breedName={breedName}/>{' '}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 /* use to reselect
@@ -125,19 +127,19 @@ const getbreedName = state => state.breedName;
 */
 
 const mapDispatchToProps = dispatch => ({
-  SeeBreedActCreator: (breed, anyurlRandom) =>
-    dispatch(loadSeeBreed(...[breed, anyurlRandom])),
-  loadDataActCreator: anyUrl => dispatch(loadData(anyUrl))
+    SeeBreedActCreator: (breed, anyurlRandom) =>
+        dispatch(loadSeeBreed(...[breed, anyurlRandom])),
+    loadDataActCreator: anyUrl => dispatch(loadData(anyUrl))
 });
 
 const mapStateToProps = state => ({
-  ListImageBreed: state.ListLoadImageBreed,
-  listBreed: state.list,
-  ListSubBreed: state.loadListSubBreed,
-  breedName: state.breedName
+    ListImageBreed: state.ListLoadImageBreed,
+    listBreed: state.list,
+    ListSubBreed: state.loadListSubBreed,
+    breedName: state.breedName
 });
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(AllBreedsContainer);
