@@ -43,8 +43,7 @@ class BreedRandomImageContainer extends Component {
                 key={index}
                 urlRandom={urlRandom}
                 SeeBreedActCreator={SeeBreedActCreator}
-                ListSubBreed={ListSubBreed}
-            />
+                ListSubBreed={ListSubBreed}/>
         ));
         return (
             <div>

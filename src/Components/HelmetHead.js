@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {Helmet} from 'react-helmet';
 
-export default class HelmetHead extends Component {
+export default class HelmetHead extends PureComponent {
     // eslint-disable-next-line class-methods-use-this
     render() {
         return (
